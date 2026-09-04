@@ -1,7 +1,0 @@
-import { ArrowUpRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { projects } from "@/data/projects";
-
-export function Projects() {
-  return <section id="work" className="border-t border-border"><div className="mx-auto max-w-6xl px-5 py-24 lg:px-8"><div className="mb-14 flex items-end justify-between gap-8"><div><p className="mb-3 text-sm uppercase tracking-[0.18em] text-muted-foreground">Selected work</p><h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">Things I like building.</h2></div><span className="hidden text-sm text-muted-foreground md:block">01 — 03</span></div><div className="grid gap-5 lg:grid-cols-3">{projects.map((project) => <Card key={project.number} className="group h-full transition-transform duration-300 hover:-translate-y-1"><CardContent className="flex h-full min-h-[360px] flex-col p-7"><div className="flex items-center justify-between text-xs text-muted-foreground"><span>{project.number}</span><ArrowUpRight size={17} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></div><div className="mt-auto"><h3 className="text-2xl font-semibold tracking-tight">{project.title}</h3><p className="mt-4 leading-7 text-muted-foreground">{project.description}</p><div className="mt-7 flex flex-wrap gap-2">{project.tags.map(tag => <span key={tag} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">{tag}</span>)}</div></div></CardContent></Card>)}</div></div></section>;
-}

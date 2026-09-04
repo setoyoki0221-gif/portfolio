@@ -1,6 +1,0 @@
-import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
-
-export function Contact() {
-  return <section id="contact" className="border-t border-border"><div className="mx-auto max-w-6xl px-5 py-28 lg:px-8"><p className="mb-4 text-sm uppercase tracking-[0.18em] text-muted-foreground">Contact</p><h2 className="max-w-4xl text-5xl font-semibold tracking-[-0.05em] sm:text-7xl">Have a product to build?<br />Let&apos;s talk<span className="text-muted-foreground">.</span></h2><div className="mt-10 flex flex-wrap gap-3"><Link className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background" href="mailto:hello@example.com">Email me <Mail size={16} /></Link><Link className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium" href="https://github.com" target="_blank">GitHub <Github size={16} /></Link><Link className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium" href="https://linkedin.com" target="_blank">LinkedIn <Linkedin size={16} /></Link></div><p className="mt-12 text-sm text-muted-foreground">Replace the placeholder email and social URLs with your real links before deployment.</p></div></section>;
-}

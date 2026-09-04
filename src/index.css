@@ -1,0 +1,254 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #04081a;
+}
+
+@layer base {
+  html.lenis {
+    scroll-behavior: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    @apply bg-ink text-white antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-blue-400/30 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-400;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-ink;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-slate-700;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-600;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Keyframes
+   --------------------------------------------------------------- */
+
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translate(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translate(-500px);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gradient-xy {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Animation utilities
+   --------------------------------------------------------------- */
+
+.animate-meteor {
+  animation: meteor 5s linear infinite;
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 4s ease infinite;
+}
+.animate-gradient-xy {
+  background-size: 400% 400%;
+  animation: gradient-xy 6s ease infinite;
+}
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------------
+   Component classes
+   --------------------------------------------------------------- */
+
+/* Animated blue -> emerald sweep used for the hero name. */
+.gradient-text {
+  background: linear-gradient(90deg, #60a5fa, #34d399, #60a5fa);
+  background-size: 200% auto;
+  animation: gradient-shift 4s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* 2px gradient frame around the code window. */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(45deg, #60a5fa, #34d399);
+  padding: 2px;
+  border-radius: 0.75rem;
+}
+
+.code-window {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.window-header {
+  background: #0b466359;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.window-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.window-dot:hover {
+  transform: scale(1.2);
+}
+
+.typing-effect::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+  color: #60a5fa;
+}
+
+/* Faint square grid used behind several sections. */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(50, 50, 70, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(50, 50, 70, 0.35) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Syntax highlighting for the hero code window. */
+.tok-key {
+  color: #c792ea;
+}
+.tok-str {
+  color: #c3e88d;
+}
+.tok-num,
+.tok-bool {
+  color: #f78c6c;
+}
+.tok-prop {
+  color: #82aaff;
+}
+.tok-punc {
+  color: #89ddff;
+}
+.tok-fn {
+  color: #ffcb6b;
+}
+.tok-comment {
+  color: #546e7a;
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
