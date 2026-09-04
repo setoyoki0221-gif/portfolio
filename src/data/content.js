@@ -228,7 +228,7 @@ export const projects = [
     title: 'Olova - A Lightweight JavaScript Library',
     description:
       'A small reactive UI library focused on a tiny runtime and a readable API. Ships in under 4kb gzipped with zero dependencies.',
-    image: '/projects/project-1.png',
+    image: '/projects/project-1.svg',
     tech: ['JavaScript', 'Vite', 'Rollup'],
     link: 'https://example.com',
     contribution: 'Core maintainer - built the reactivity system and docs site.',
@@ -237,7 +237,7 @@ export const projects = [
     title: 'Commerce Storefront',
     description:
       'Headless storefront with server-side rendering, cart persistence and a checkout that survives flaky mobile connections.',
-    image: '/projects/project-2.png',
+    image: '/projects/project-2.svg',
     tech: ['Next.js', 'TypeScript', 'Stripe'],
     link: 'https://example.com',
     contribution: 'Lead developer - full build from design handoff to launch.',
@@ -246,7 +246,7 @@ export const projects = [
     title: 'Analytics Dashboard',
     description:
       'Real-time metrics dashboard rendering 100k+ data points without dropping frames, built on a virtualised chart layer.',
-    image: '/projects/project-3.png',
+    image: '/projects/project-3.svg',
     tech: ['React', 'D3', 'WebSocket'],
     link: 'https://example.com',
     contribution: 'Frontend architecture and the charting engine.',
@@ -255,7 +255,7 @@ export const projects = [
     title: 'Job Data Extractor',
     description:
       'Chrome extension that pulls structured listing data into CSV, JSON or Excel. Manifest v3, no backend, everything runs locally.',
-    image: '/projects/project-4.png',
+    image: '/projects/project-4.svg',
     tech: ['Chrome Extension', 'JavaScript', 'Manifest v3'],
     link: 'https://example.com',
     contribution: 'Solo build - scraping logic, UI and store submission.',
@@ -264,7 +264,7 @@ export const projects = [
     title: 'AI Content Assistant',
     description:
       'SaaS platform for drafting, evaluating and versioning prompts, with streaming responses and per-team usage limits.',
-    image: '/projects/project-5.png',
+    image: '/projects/project-5.svg',
     tech: ['React', 'Node.js', 'OpenAI'],
     link: 'https://example.com',
     contribution: 'Backend API design and the streaming response pipeline.',
@@ -273,7 +273,7 @@ export const projects = [
     title: 'Travel Journal Platform',
     description:
       'Trip tracker that maps routes automatically and turns them into shareable multimedia journals, online or offline.',
-    image: '/projects/project-6.png',
+    image: '/projects/project-6.svg',
     tech: ['React Native', 'AWS', 'MapBox'],
     link: 'https://example.com',
     contribution: 'Offline sync layer and map rendering performance work.',
@@ -282,7 +282,7 @@ export const projects = [
     title: 'Realtime Collaboration Editor',
     description:
       'Multiplayer document editor with conflict-free merging, presence indicators and offline edits that reconcile on reconnect.',
-    image: '/projects/project-7.png',
+    image: '/projects/project-7.svg',
     tech: ['React', 'CRDT', 'WebSocket'],
     link: 'https://example.com',
     contribution: 'Built the CRDT sync layer and presence system.',
@@ -291,7 +291,7 @@ export const projects = [
     title: 'Design System & Component Library',
     description:
       'Accessible component library with tokens, docs and visual regression tests, consumed by four product teams.',
-    image: '/projects/project-8.png',
+    image: '/projects/project-8.svg',
     tech: ['React', 'Storybook', 'Tailwind'],
     link: 'https://example.com',
     contribution: 'Sole author - API design, a11y audit and release pipeline.',
@@ -300,7 +300,7 @@ export const projects = [
     title: 'Booking & Scheduling Platform',
     description:
       'Timezone-correct scheduling with calendar sync, automated reminders and a booking flow that handles double-book races.',
-    image: '/projects/project-9.png',
+    image: '/projects/project-9.svg',
     tech: ['Next.js', 'PostgreSQL', 'Redis'],
     link: 'https://example.com',
     contribution: 'Backend scheduling engine and conflict resolution.',
@@ -309,7 +309,7 @@ export const projects = [
     title: 'Data Visualisation Toolkit',
     description:
       'Composable charting primitives that stay readable at 100k points, with accessible tooltips and keyboard navigation.',
-    image: '/projects/project-10.png',
+    image: '/projects/project-10.svg',
     tech: ['TypeScript', 'D3', 'Canvas'],
     link: 'https://example.com',
     contribution: 'Author - rendering pipeline and accessibility layer.',
@@ -320,7 +320,7 @@ export const featuredProject = {
   title: 'Robo Apply - AI Resume Scoring',
   description:
     'An advanced web application that leverages AI to analyse and score resumes, providing actionable feedback and suggestions for improvement. Built with React, Node.js and OpenAI API integration.',
-  image: '/projects/featured.png',
+  image: '/projects/featured.svg',
   tech: ['React', 'Node.js', 'MongoDB', 'AWS'],
   link: 'https://example.com',
   contribution: 'Full-stack build - scoring engine, API and interface.',
