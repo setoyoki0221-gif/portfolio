@@ -1,17 +1,38 @@
-# Seto Yoki — Reference Recreation
+# Seto Yoki — Portfolio
 
-This project recreates the supplied reference screenshot as a responsive Next.js site.
+Production-oriented portfolio built for a full-stack development assessment.
 
-## Run
+## Stack
 
+- Next.js App Router + Server Components
+- TypeScript strict mode
+- shadcn/ui primitives
+- Tailwind CSS
+- next-themes
+- Docker standalone build
+- GitHub Actions CI/CD
+
+## Run locally
+
+```bash
 npm install
 npm run dev
+```
 
-Then open http://localhost:3000
+## Quality checks
 
-## Main file
+```bash
+npm run typecheck
+npm run lint
+npm run build
+```
 
-`app/page.tsx` contains the portfolio content and animated typing text.
-`app/globals.css` contains the visual recreation: dark grid background, gradient nav, hero typography, floating badges, code editor, responsive mobile layout, and hover/typing animations.
+## Docker
 
-The screenshot is used as the visual reference; no external image assets are required.
+```bash
+docker compose up --build
+```
+
+## Personalization
+
+Replace the placeholder social links/email in `src/components/sections/contact.tsx` and update the project data in `src/data/projects.ts`.
