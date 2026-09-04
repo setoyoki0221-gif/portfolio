@@ -330,7 +330,7 @@ export const contact = {
   heading: '-Contact Me-',
   intro: 'Have a question or want to work together?',
   channels: [
-    { label: 'Email', value: 'you@example.com', href: 'mailto:you@example.com', icon: 'mail' },
+    { label: 'Email', value: 'setoyoki0221@gmail.com', href: 'mailto:setoyoki0221@gmail.com', icon: 'mail' },
     { label: 'Telegram', value: '@yourhandle', href: 'https://t.me/yourhandle', icon: 'telegram' },
     { label: 'GitHub', value: '@setoyoki0221-gif', href: 'https://github.com/setoyoki0221-gif', icon: 'github' },
   ],
