@@ -1,30 +1,17 @@
-# Seto Yoki Portfolio
+# Seto Yoki — Reference Recreation
 
-A responsive Next.js + TypeScript portfolio inspired closely by the supplied reference site.
+This project recreates the supplied reference screenshot as a responsive Next.js site.
 
 ## Run
 
-```bash
 npm install
 npm run dev
-```
 
-Open http://localhost:3000
+Then open http://localhost:3000
 
-## Customize
+## Main file
 
-Edit `app/page.tsx`:
-- name and hero copy
-- skills
-- project list
-- email/social links
-- about section
+`app/page.tsx` contains the portfolio content and animated typing text.
+`app/globals.css` contains the visual recreation: dark grid background, gradient nav, hero typography, floating badges, code editor, responsive mobile layout, and hover/typing animations.
 
-The visual system, responsive layout and Framer Motion animations are already wired up.
-
-## Build
-
-```bash
-npm run build
-npm start
-```
+The screenshot is used as the visual reference; no external image assets are required.

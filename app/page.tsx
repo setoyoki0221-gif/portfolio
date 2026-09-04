@@ -1,246 +1,124 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Github,
-  Linkedin,
-  Mail,
-  Menu,
-  X,
-  Code2,
-  Server,
-  Sparkles,
-  ExternalLink,
-} from "lucide-react";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { Code2, Zap, Star, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const skills = [
-  "JavaScript", "TypeScript", "React", "Next.js", "Node.js",
-  "Python", "PostgreSQL", "MongoDB", "AWS", "Docker", "Git", "Figma"
+const codeLines = [
+  <><span className="kw">const</span> <span className="name">profile</span> = {"{"}</>,
+  <>  <span className="key">name</span>: <span className="str">'Seto Yoki'</span>,</>,
+  <>  <span className="key">title</span>: <span className="str">'Full-Stack Developer'</span>,</>,
+  <>  <span className="key">skills</span>: [</>,
+  <>    <span className="str">'React'</span>, <span className="str">'NextJS'</span>, <span className="str">'Redux'</span>, <span className="str">'Express'</span>, <span className="str">'Node.js'</span>,</>,
+  <>    <span className="str">'MySQL'</span>, <span className="str">'MongoDB'</span>, <span className="str">'Docker'</span>, <span className="str">'AWS'</span>, <span className="str">'TypeScript'</span>,</>,
+  <>    <span className="str">'GraphQL'</span>, <span className="str">'Git'</span>, <span className="str">'Linux'</span>, <span className="str">'Tailwind'</span></>,
+  <>  ],</>,
+  <>  <span className="key">hardWorker</span>: <span className="bool">true</span>,</>,
+  <>  <span className="key">quickLearner</span>: <span className="bool">true</span>,</>,
+  <>  <span className="key">problemSolver</span>: <span className="bool">true</span>,</>,
+  <>  <span className="key">yearsOfExperience</span>: <span className="num">5</span>,</>,
+  <>  <span className="key">hireable</span>: <span className="fn">function</span>() {"{"}</>,
+  <>    <span className="kw">return</span> {"{"}</>,
+  <>      <span className="name">this</span>.hardWorker &amp;&amp;</>,
+  <>      <span className="name">this</span>.problemSolver &amp;&amp;</>,
+  <>      <span className="name">this</span>.skills.length &gt;= <span className="num">10</span> &amp;&amp;</>,
+  <>      <span className="name">this</span>.yearsOfExperience &gt;= <span className="num">5</span></>,
+  <>    );</>,
+  <>  {"},"}</>,
+  <>  <span className="key">status</span>: <span className="str">"🔥 Open To Work!"</span></>,
+  {"};" as any},
 ];
 
-const projects = [
-  {
-    title: "Project One",
-    type: "Full-Stack Application",
-    description: "A polished full-stack product with a fast interface, robust API layer, authentication and a scalable data model.",
-    stack: ["Next.js", "TypeScript", "Node.js"],
-    number: "01",
-  },
-  {
-    title: "Project Two",
-    type: "Product & UI Engineering",
-    description: "A responsive product experience focused on clean interaction design, reusable components and smooth motion.",
-    stack: ["React", "Tailwind", "Framer Motion"],
-    number: "02",
-  },
-  {
-    title: "Project Three",
-    type: "Cloud & Backend",
-    description: "A production-minded backend and cloud architecture designed around reliability, observability and performance.",
-    stack: ["Node.js", "AWS", "Docker"],
-    number: "03",
-  },
-  {
-    title: "Project Four",
-    type: "Creative Web",
-    description: "An experimental web experience combining expressive typography, modern visuals and delightful micro-interactions.",
-    stack: ["Next.js", "GSAP", "WebGL"],
-    number: "04",
-  },
-];
+const nav = ["Home", "About", "Skills", "Experience", "Education", "Projects", "Contact"];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-};
+export default function Page() {
+  const [menu, setMenu] = useState(false);
+  const [role, setRole] = useState("");
+  const roles = ["JavaScript Developer", "Full-Stack Developer", "UI Engineer"];
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
 
-export default function Home() {
-  const [open, setOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-
-  const close = () => setOpen(false);
+  useEffect(() => {
+    const target = roles[roleIndex];
+    const delay = deleting ? 55 : 90;
+    const timer = setTimeout(() => {
+      if (!deleting) {
+        const next = target.slice(0, role.length + 1);
+        setRole(next);
+        if (next === target) setTimeout(() => setDeleting(true), 900);
+      } else {
+        const next = target.slice(0, Math.max(0, role.length - 1));
+        setRole(next);
+        if (!next) {
+          setDeleting(false);
+          setRoleIndex((i) => (i + 1) % roles.length);
+        }
+      }
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [role, roleIndex, deleting]);
 
   return (
-    <main>
-      <motion.div className="progress" style={{ scaleX }} />
+    <main className="site">
+      <div className="stars" />
+      <div className="grid" />
 
-      <header className="nav">
-        <a href="#home" className="brand" onClick={close}>
-          SY<span>.</span>
-        </a>
-
-        <nav className={`navLinks ${open ? "open" : ""}`}>
-          {["Home", "Skills", "Projects", "About", "Contact"].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} onClick={close}>{item}</a>
+      <header className="topbar">
+        <nav className={`nav ${menu ? "mobileOpen" : ""}`}>
+          {nav.map((item, i) => (
+            <a key={item} className={i === 0 ? "active" : ""} href={`#${item.toLowerCase()}`} onClick={() => setMenu(false)}>
+              {item}
+            </a>
           ))}
         </nav>
-
-        <a className="navCta" href="#contact">Let&apos;s talk <ArrowUpRight size={16} /></a>
-        <button className="menuBtn" aria-label="Toggle menu" onClick={() => setOpen(!open)}>
-          {open ? <X /> : <Menu />}
+        <button className="menuButton" onClick={() => setMenu(!menu)} aria-label="Menu">
+          {menu ? <X /> : <Menu />}
         </button>
       </header>
 
-      <section id="home" className="hero section">
-        <div className="orb orbA" />
-        <div className="orb orbB" />
-        <div className="gridGlow" />
-
-        <motion.div
-          className="heroCopy"
-          initial="hidden"
-          animate="show"
-          variants={{ show: { transition: { staggerChildren: 0.12 } } }}
-        >
-          <motion.p variants={fadeUp} className="eyebrow">FULL-STACK DEVELOPER & UI/UX ENGINEER</motion.p>
-          <motion.h1 variants={fadeUp}>
-            Building digital
-            <span> experiences</span>
-            <br />that feel alive.
-          </motion.h1>
-          <motion.p variants={fadeUp} className="heroText">
-            Hi, I&apos;m <strong>Seto Yoki</strong>. I design and build thoughtful web products
-            where clean engineering meets expressive interfaces.
-          </motion.p>
-          <motion.div variants={fadeUp} className="heroActions">
-            <a className="button primary" href="#projects">View my work <ArrowDown size={17} /></a>
-            <a className="button ghost" href="#contact">Get in touch <ArrowUpRight size={17} /></a>
+      <section id="home" className="hero">
+        <div className="heroLeft">
+          <motion.div className="welcome" initial={{opacity:0,y:15}} animate={{opacity:1,y:0}} transition={{duration:.6}}>
+            <span className="dot" /> Welcome to my universe
           </motion.div>
-        </motion.div>
 
-        <motion.div
-          className="heroCard"
-          initial={{ opacity: 0, scale: .92, rotate: 3 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1, delay: .35 }}
-        >
-          <div className="cardNoise" />
-          <div className="terminalTop"><i /><i /><i /><span>~/seto/portfolio</span></div>
-          <pre>{`const developer = {
-  name: "Seto Yoki",
-  focus: [
-    "full-stack",
-    "ui/ux",
-    "creative web"
-  ],
-  status: "available"
-};`}</pre>
-          <div className="availability"><span /> Available for new projects</div>
-        </motion.div>
-      </section>
+          <motion.div className="magicBadge" initial={{opacity:0,scale:.8}} animate={{opacity:1,scale:1}} transition={{delay:.2}}>
+            <Zap size={15} /> UI Magic
+          </motion.div>
 
-      <section id="skills" className="section">
-        <motion.div className="sectionHead" initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
-          <p className="eyebrow">WHAT I WORK WITH</p>
-          <h2>Tools that turn ideas <span>into products.</span></h2>
-        </motion.div>
+          <motion.h1 initial={{opacity:0,y:25}} animate={{opacity:1,y:0}} transition={{delay:.25,duration:.7}}>
+            Hello<br />I&apos;m <span>Seto Yoki</span><i />
+          </motion.h1>
 
-        <div className="skillGrid">
-          {skills.map((skill, i) => (
-            <motion.div
-              className="skill"
-              key={skill}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * .035 }}
-              whileHover={{ y: -5 }}
-            >
-              <Code2 size={17} />
-              <span>{skill}</span>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+          <motion.div className="roleBadge" initial={{opacity:0,x:-20}} animate={{opacity:1,x:0}} transition={{delay:.45}}>
+            <Zap size={15} /> <b>{role}</b><em />
+          </motion.div>
 
-      <section id="projects" className="section projects">
-        <div className="sectionHead split">
-          <div>
-            <p className="eyebrow">SELECTED WORK</p>
-            <h2>Projects I&apos;m <span>proud of.</span></h2>
-          </div>
-          <p className="muted">A small selection of things I&apos;ve designed, engineered and shipped.</p>
-        </div>
-
-        <div className="projectList">
-          {projects.map((project, i) => (
-            <motion.article
-              className="project"
-              key={project.number}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-70px" }}
-              transition={{ delay: i * .08 }}
-            >
-              <div className="projectNumber">{project.number}</div>
-              <div className="projectInfo">
-                <p className="projectType">{project.type}</p>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="tags">{project.stack.map(t => <span key={t}>{t}</span>)}</div>
-              </div>
-              <a href="#contact" className="projectArrow" aria-label={`Discuss ${project.title}`}><ArrowUpRight /></a>
-            </motion.article>
-          ))}
-        </div>
-      </section>
-
-      <section id="about" className="section about">
-        <div className="aboutVisual">
-          <div className="aboutRing ring1" />
-          <div className="aboutRing ring2" />
-          <div className="aboutCore"><Sparkles /></div>
-        </div>
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
-          <p className="eyebrow">A LITTLE ABOUT ME</p>
-          <h2>I care about the <span>details.</span></h2>
-          <p className="aboutText">
-            I&apos;m a developer who enjoys taking an idea from a rough sketch to a real,
-            reliable product. My sweet spot is the intersection of frontend craft,
-            backend architecture and visual design.
+          <p className="intro">
+            JavaScript lover 🚀 | Full-Stack Developer 🛠️ | Building for the<br className="desktop" /> web 💻✨
           </p>
-          <p className="aboutText">
-            I like simple systems, purposeful motion and interfaces that get out of the
-            way while still feeling memorable.
-          </p>
-          <div className="aboutStats">
-            <div><strong>01</strong><span>Design-minded<br />engineering</span></div>
-            <div><strong>02</strong><span>Scalable<br />architecture</span></div>
-            <div><strong>03</strong><span>Human-first<br />experiences</span></div>
-          </div>
-        </motion.div>
-      </section>
 
-      <section className="services section">
-        <div className="serviceCard"><Server /><h3>Full-stack</h3><p>APIs, databases, auth, cloud infrastructure and production-ready applications.</p></div>
-        <div className="serviceCard"><Sparkles /><h3>UI / UX</h3><p>Interfaces with clear hierarchy, thoughtful interaction and responsive behavior.</p></div>
-        <div className="serviceCard"><Code2 /><h3>Creative web</h3><p>Motion, visual systems and expressive details that make products feel special.</p></div>
-      </section>
+          <a href="#about" className="learn">Learn More</a>
 
-      <section id="contact" className="contact section">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
-          <p className="eyebrow">HAVE A PROJECT IN MIND?</p>
-          <h2>Let&apos;s make something <span>great.</span></h2>
-          <p className="contactText">Tell me a little about what you&apos;re building and I&apos;ll get back to you.</p>
-          <a className="emailLink" href="mailto:hello@example.com">hello@example.com <ArrowUpRight /></a>
-        </motion.div>
-
-        <div className="socials">
-          <a href="https://github.com/" target="_blank" rel="noreferrer"><Github /> GitHub</a>
-          <a href="https://linkedin.com/" target="_blank" rel="noreferrer"><Linkedin /> LinkedIn</a>
-          <a href="mailto:hello@example.com"><Mail /> Email</a>
+          <div className="floatBadge clean"><Code2 size={15}/> Clean Code</div>
+          <div className="floatBadge innovation"><Star size={15}/> Innovation</div>
         </div>
+
+        <motion.div className="editor" initial={{opacity:0,x:50}} animate={{opacity:1,x:0}} transition={{duration:.8,delay:.25}}>
+          <div className="editorBar">
+            <div className="lights"><span className="red"/><span className="yellow"/><span className="green"/></div>
+            <span>developer.js</span>
+          </div>
+          <pre>{codeLines.map((line, i) => <code key={i} className="line">{line}{"\n"}</code>)}</pre>
+        </motion.div>
       </section>
 
-      <footer>
-        <span>© {new Date().getFullYear()} Seto Yoki</span>
-        <span>Designed & built with care.</span>
-        <a href="#home">Back to top ↑</a>
-      </footer>
+      <section id="about" className="dummy"><h2>About</h2></section>
+      <section id="skills" className="dummy"><h2>Skills</h2></section>
+      <section id="experience" className="dummy"><h2>Experience</h2></section>
+      <section id="education" className="dummy"><h2>Education</h2></section>
+      <section id="projects" className="dummy"><h2>Projects</h2></section>
+      <section id="contact" className="dummy"><h2>Contact</h2></section>
     </main>
   );
 }
