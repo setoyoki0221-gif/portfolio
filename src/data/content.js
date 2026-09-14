@@ -5,6 +5,7 @@
 
 export const profile = {
   name: 'Seto Yoki',
+
   badge: 'Welcome to my universe',
   // The hero pill cycles through these, typewriter style.
   roles: [
